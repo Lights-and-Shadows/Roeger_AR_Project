@@ -30,14 +30,59 @@ public class Lorenz : MonoBehaviour
         for (int i = 0; i < n; i++)
         {
             // Function assignments
+            dx = sigma * (y - x);
+            dy = x * (rho - z) - y;
+            dz = x * y - beta * z;
 
+            // New coordinates
+            x = x + delta * dx;
+            y = y + delta * dy;
+            z = z + delta * dz;
+
+            positionData[i] = new Vector3((float)x, (float)y, (float)z);
         }
     }
 
     public void Start()
     {
-        n = 2000;
+        n = 4000;
         x0 = y0 = z0 = 1.0;
         positionData = new Vector3[n];
+        line = GetComponent<LineRenderer>();
+        line.loop = true;
+        line.positionCount = n;
+
+        Gradient gradient = new Gradient();
+        gradient.SetKeys(
+            new GradientColorKey[] 
+            {
+                new GradientColorKey(Color.red, 0.0f),
+                new GradientColorKey(Color.green, 0.5f),
+                new GradientColorKey(Color.blue, 1f)
+            },
+            new GradientAlphaKey[]
+            {
+                new GradientAlphaKey(1.0f, 0.0f),
+                new GradientAlphaKey(1.0f, 0.5f),
+                new GradientAlphaKey(1.0f, 1.0f)
+            }
+        );
+
+        PlotPoints();
+    }
+
+    public void Update()
+    {
+        StartCoroutine(DrawEquation());
+    }
+
+    IEnumerator DrawEquation()
+    {
+        for (int i = 0; i < n; i++)
+        {
+            line.SetPosition(i, positionData[i]);
+
+            yield return new WaitForSeconds(Time.deltaTime);
+        }
     }
 }
