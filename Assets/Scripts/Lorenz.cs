@@ -28,6 +28,27 @@ public class Lorenz : MonoBehaviour
         k4 = new double[n];
     }
 
+    void RatesOfChange(double[] xin)
+    {
+        double x = xin[0];
+        double y = xin[1];
+        double z = xin[2];
+        xprime[0] = sigma * (y - x);
+        xprime[1] = x * (rho - z) - y;
+        xprime[2] = x * y - beta * z;
+    }
+
+    public void FixedUpdate()
+    {
+        double h = (double)Time.fixedDeltaTime;
+        RatesOfChange(x); // Start at current position
+        for (int i = 0; i < n; i++)
+        {
+            k1[i] = xprime[i] * h;
+            xstore[i] = x[i] + 0.5 * k1[i];
+        }
+    }
+
     // Called once per frame
     public void Update()
     {
