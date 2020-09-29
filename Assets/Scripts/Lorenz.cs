@@ -4,54 +4,40 @@ using UnityEngine;
 
 public class Lorenz : MonoBehaviour
 {
+    private LineRenderer line;
+
     public double sigma = 10.0;
     public double rho = 28.0;
     public double beta = 8.0 / 3.0;
-    public int n = 3;
-    public double[] x;
-    public double[] xprime;
-    public double[] xstore;
-    public double[] k1;
-    public double[] k2;
-    public double[] k3;
-    public double[] k4;
 
-    // Initialization
-    public void Start()
-    {
-        x = new double[n];
-        xprime = new double[n];
-        xstore = new double[n];
-        k1 = new double[n];
-        k2 = new double[n];
-        k3 = new double[n];
-        k4 = new double[n];
-    }
+    public double x0, y0, z0; // Starting positions
+    public double x, y, z; // Our variables to edit over time
 
-    void RatesOfChange(double[] xin)
-    {
-        double x = xin[0];
-        double y = xin[1];
-        double z = xin[2];
-        xprime[0] = sigma * (y - x);
-        xprime[1] = x * (rho - z) - y;
-        xprime[2] = x * y - beta * z;
-    }
+    public double delta; // Delta value to be used in position plotting
+    public double dx, dy, dz; // Functions
 
-    public void FixedUpdate()
+    Vector3[] positionData;
+
+    public int n; // Iterations
+
+    public void PlotPoints()
     {
-        double h = (double)Time.fixedDeltaTime;
-        RatesOfChange(x); // Start at current position
+        // Assign first positions to origin
+        x = x0;
+        y = y0;
+        z = z0;
+
         for (int i = 0; i < n; i++)
         {
-            k1[i] = xprime[i] * h;
-            xstore[i] = x[i] + 0.5 * k1[i];
+            // Function assignments
+
         }
     }
 
-    // Called once per frame
-    public void Update()
+    public void Start()
     {
-        
+        n = 2000;
+        x0 = y0 = z0 = 1.0;
+        positionData = new Vector3[n];
     }
 }
