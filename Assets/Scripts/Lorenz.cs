@@ -49,24 +49,10 @@ public class Lorenz : MonoBehaviour
         x0 = y0 = z0 = 1.0;
         positionData = new Vector3[n];
         line = GetComponent<LineRenderer>();
-        line.loop = true;
+        line.loop = false;
+        line.useWorldSpace = false;
         line.positionCount = n;
-
-        Gradient gradient = new Gradient();
-        gradient.SetKeys(
-            new GradientColorKey[] 
-            {
-                new GradientColorKey(Color.red, 0.0f),
-                new GradientColorKey(Color.green, 0.5f),
-                new GradientColorKey(Color.blue, 1f)
-            },
-            new GradientAlphaKey[]
-            {
-                new GradientAlphaKey(1.0f, 0.0f),
-                new GradientAlphaKey(1.0f, 0.5f),
-                new GradientAlphaKey(1.0f, 1.0f)
-            }
-        );
+        line.material = new Material(Shader.Find("Sprites/Default"));
 
         PlotPoints();
     }
