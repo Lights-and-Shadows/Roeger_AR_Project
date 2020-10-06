@@ -5,6 +5,7 @@ using UnityEngine;
 public class Lorenz : MonoBehaviour
 {
     private LineRenderer line;
+    private ScaleFactor scale; // Made the scale it's own script component to make UI controls flexible
 
     public double sigma = 10.0;
     public double rho = 28.0;
@@ -15,8 +16,6 @@ public class Lorenz : MonoBehaviour
 
     public double delta; // Delta value to be used in position plotting
     public double dx, dy, dz; // Functions
-
-    public double scaleFactor;
 
     Vector3[] positionData;
 
@@ -41,7 +40,7 @@ public class Lorenz : MonoBehaviour
             y = y + delta * dy;
             z = z + delta * dz;
 
-            positionData[i] = new Vector3((float)x * (float)scaleFactor, (float)y * (float)scaleFactor, (float)z * (float)scaleFactor);
+            positionData[i] = new Vector3((float)x * (float)scale.scaleFactor, (float)y * (float)scale.scaleFactor, (float)z * (float)scale.scaleFactor);
         }
     }
 
