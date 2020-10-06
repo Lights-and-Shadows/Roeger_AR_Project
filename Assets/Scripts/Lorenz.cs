@@ -16,6 +16,8 @@ public class Lorenz : MonoBehaviour
     public double delta; // Delta value to be used in position plotting
     public double dx, dy, dz; // Functions
 
+    public double scaleFactor;
+
     Vector3[] positionData;
 
     public int n; // Iterations
@@ -39,7 +41,7 @@ public class Lorenz : MonoBehaviour
             y = y + delta * dy;
             z = z + delta * dz;
 
-            positionData[i] = new Vector3((float)x, (float)y, (float)z);
+            positionData[i] = new Vector3((float)x * (float)scaleFactor, (float)y * (float)scaleFactor, (float)z * (float)scaleFactor);
         }
     }
 

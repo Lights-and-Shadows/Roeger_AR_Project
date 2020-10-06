@@ -57,6 +57,7 @@ MonoBehaviour:
   dx: 0
   dy: 0
   dz: 0
+  scaleFactor: 0.05
   n: 0
 --- !u!120 &8286366960850320336
 LineRenderer:
@@ -100,7 +101,7 @@ LineRenderer:
   m_Positions: []
   m_Parameters:
     serializedVersion: 3
-    widthMultiplier: 0.075
+    widthMultiplier: 0.03
     widthCurve:
       serializedVersion: 2
       m_Curve:
