@@ -390,7 +390,7 @@ MonoBehaviour:
   m_MinValue: 0
   m_MaxValue: 1
   m_WholeNumbers: 0
-  m_Value: 0
+  m_Value: 1
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -1046,7 +1046,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1062566172}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1770949111}
+        m_MethodName: set_enabled
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1062566172
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1659,7 +1670,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1841035803}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1770949111}
+        m_MethodName: set_enabled
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
 --- !u!114 &1841035803
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1778,7 +1800,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1885694840}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1770949111}
+        m_MethodName: Reset
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1885694840
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1995,6 +2028,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   obj: {fileID: 8286366960850320343, guid: 56c01445b8e25e74aab17c67753d64bb, type: 3}
+  scaleSlider: {fileID: 334240137}
+  rotationSlider: {fileID: 725047702}
 --- !u!114 &2040750215
 MonoBehaviour:
   m_ObjectHideFlags: 0

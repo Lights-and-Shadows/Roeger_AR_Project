@@ -54,7 +54,7 @@ public class Lorenz : MonoBehaviour
         line.useWorldSpace = false;
         line.positionCount = n;
         line.material = new Material(Shader.Find("Sprites/Default"));
-
+        scale = gameObject.GetComponent<ScaleFactor>();
         PlotPoints();
     }
 

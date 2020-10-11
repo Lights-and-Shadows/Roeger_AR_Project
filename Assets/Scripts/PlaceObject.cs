@@ -1,21 +1,22 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.XR.ARFoundation;
 using UnityEngine.XR.ARSubsystems;
 
 [RequireComponent(typeof(ARRaycastManager))]
 public class PlaceObject : MonoBehaviour
 {
-
     public GameObject obj;
 
     private GameObject spawnedObj;
     private ARRaycastManager _arRaycastManager;
     private Vector2 touchPosition;
 
-    static List<ARRaycastHit> hits = new List<ARRaycastHit>();
+    public Slider scaleSlider, rotationSlider;
 
+    static List<ARRaycastHit> hits = new List<ARRaycastHit>();
 
     void Awake()
     {
@@ -52,5 +53,10 @@ public class PlaceObject : MonoBehaviour
                 spawnedObj.transform.position = hitPose.position;
             }
         }
+
+        spawnedObj.transform.rotation = Quaternion.Euler(0f, rotationSlider.value, 0f);
+        spawnedObj.transform.localScale = new Vector3(scaleSlider.value,
+            scaleSlider.value,
+            scaleSlider.value);
     }
 }
