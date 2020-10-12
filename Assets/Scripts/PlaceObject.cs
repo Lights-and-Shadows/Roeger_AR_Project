@@ -8,19 +8,48 @@ using UnityEngine.XR.ARSubsystems;
 [RequireComponent(typeof(ARRaycastManager))]
 public class PlaceObject : MonoBehaviour
 {
-    public GameObject obj;
-
-    private GameObject spawnedObj;
-    private ARRaycastManager _arRaycastManager;
+    public List<GameObject> mathObjects = new List<GameObject>();
     private Vector2 touchPosition;
 
     public Slider scaleSlider, rotationSlider;
 
     static List<ARRaycastHit> hits = new List<ARRaycastHit>();
 
+    [SerializeField]
+    private Button nextButton, prevButton;
+
+    public GameObject obj;
+
+    private GameObject spawnedObj;
+    private ARRaycastManager _arRaycastManager;
+
+    private int selectedIndex;
+
     void Awake()
     {
         _arRaycastManager = GetComponent<ARRaycastManager>();
+        selectedIndex = 0;
+
+        nextButton.onClick.AddListener(() => NextPrefab());
+        prevButton.onClick.AddListener(() => PrevPrefab());
+
+        obj = mathObjects[selectedIndex];
+    }
+
+    void NextPrefab()
+    {
+        if (selectedIndex == mathObjects.Count - 1)
+            selectedIndex = 0;
+        else
+            selectedIndex++;
+    }
+
+    void PrevPrefab()
+    {
+        if (selectedIndex == 0)
+            selectedIndex = mathObjects.Count - 1;
+        else
+            selectedIndex--;
     }
 
     bool GetTouchPos(out Vector2 touchPos)
