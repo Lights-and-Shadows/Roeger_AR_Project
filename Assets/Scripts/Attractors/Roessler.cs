@@ -61,11 +61,6 @@ public class Roessler : MonoBehaviour
         scale = gameObject.GetComponent<ScaleFactor>();
         delta = 0.07;
         PlotPoints();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
         StartCoroutine(DrawEquation());
     }
 
@@ -75,7 +70,7 @@ public class Roessler : MonoBehaviour
         {
             line.SetPosition(i, positionData[i]);
 
-            yield return new WaitForSeconds(Time.deltaTime);
+            yield return new WaitForSecondsRealtime(Time.deltaTime);
         }
     }
 }

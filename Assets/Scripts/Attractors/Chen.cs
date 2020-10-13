@@ -9,9 +9,9 @@ public class Chen : MonoBehaviour
     private ScaleFactor scale; // Scale component
 
     // Constants
-    private double a = 15.6;
-    private double b = 1.0;
-    private double c = 25.58;
+    private double a = 35;
+    private double b = 8 / 3;
+    private double c = 28;
 
     private double x0, y0, z0; // Starting positions
     private double x, y, z; // Variables to edit over time
@@ -32,12 +32,10 @@ public class Chen : MonoBehaviour
 
         for (int i = 0; i < n; i++)
         {
-            // Assigning the "g" helper function
-            g = e * x + (d + e) * (Math.Abs(x + 1) - Math.Abs(x - 1));
             // Function assignments
-            dx = a * (y - x - g);
-            dy = b * (x - y + z);
-            dz = -c * y;
+            dx = a * (y - x);
+            dy = (c - a) * x - x * z + c * y;
+            dz = x * y - b * z;
 
             // New coordinates
             x = x + delta * dx;
@@ -53,8 +51,10 @@ public class Chen : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        n = 2000;
-        x0 = y0 = z0 = 1.0;
+        n = 3000;
+        x0 = -3.0;
+        y0 = 2.0;
+        z0 = 20.0;
         positionData = new Vector3[n];
         line = GetComponent<LineRenderer>();
         line.loop = false;
@@ -62,12 +62,8 @@ public class Chen : MonoBehaviour
         line.positionCount = n;
         line.material = new Material(Shader.Find("Sprites/Default"));
         scale = gameObject.GetComponent<ScaleFactor>();
+        delta = 0.002;
         PlotPoints();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
         StartCoroutine(DrawEquation());
     }
 
@@ -77,7 +73,7 @@ public class Chen : MonoBehaviour
         {
             line.SetPosition(i, positionData[i]);
 
-            yield return new WaitForSeconds(Time.deltaTime);
+            yield return new WaitForSecondsRealtime(Time.deltaTime);
         }
     }
 }

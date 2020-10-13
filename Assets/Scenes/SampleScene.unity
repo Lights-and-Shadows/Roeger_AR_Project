@@ -3014,6 +3014,7 @@ MonoBehaviour:
   - {fileID: 8286366960850320343, guid: 56c01445b8e25e74aab17c67753d64bb, type: 3}
   - {fileID: 8286366960850320343, guid: 33331d7a5c4a46a4ca4eb127cbed627a, type: 3}
   - {fileID: 8286366960850320343, guid: f8b181f870cd27b4ca48fdf197fb1a99, type: 3}
+  - {fileID: 8286366960850320343, guid: b8bb4a59a3d6d9d47a72dfc7913fec59, type: 3}
   scaleSlider: {fileID: 334240137}
   rotationSlider: {fileID: 725047702}
   currentObjText: {fileID: 1738758407}

@@ -66,11 +66,6 @@ public class Chua : MonoBehaviour
         scale = gameObject.GetComponent<ScaleFactor>();
         delta = 0.01;
         PlotPoints();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
         StartCoroutine(DrawEquation());
     }
 
@@ -80,7 +75,7 @@ public class Chua : MonoBehaviour
         {
             line.SetPosition(i, positionData[i]);
 
-            yield return new WaitForSeconds(Time.deltaTime);
+            yield return new WaitForSecondsRealtime(Time.deltaTime);
         }
     }
 }

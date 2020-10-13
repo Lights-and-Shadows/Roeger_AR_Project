@@ -57,10 +57,6 @@ public class Lorenz : MonoBehaviour
         scale = gameObject.GetComponent<ScaleFactor>();
         delta = 0.01;
         PlotPoints();
-    }
-
-    public void Update()
-    {
         StartCoroutine(DrawEquation());
     }
 
@@ -70,7 +66,7 @@ public class Lorenz : MonoBehaviour
         {
             line.SetPosition(i, positionData[i]);
 
-            yield return new WaitForSeconds(Time.deltaTime);
+            yield return new WaitForSecondsRealtime(Time.deltaTime);
         }
     }
 }
