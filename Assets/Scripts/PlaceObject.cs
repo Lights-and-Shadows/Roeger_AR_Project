@@ -15,8 +15,7 @@ public class PlaceObject : MonoBehaviour
 
     static List<ARRaycastHit> hits = new List<ARRaycastHit>();
 
-    [SerializeField]
-    private Button nextButton, prevButton;
+    public Button nextButton, prevButton;
 
     public GameObject obj;
 
@@ -38,6 +37,13 @@ public class PlaceObject : MonoBehaviour
 
     void NextPrefab()
     {
+        // Remove the previous object from the scene and replace currently selected one with the next
+        if (spawnedObj != null)
+        {
+            Destroy(spawnedObj);
+            spawnedObj = null;
+        }
+
         if (selectedIndex == mathObjects.Count - 1)
             selectedIndex = 0;
         else
@@ -46,6 +52,12 @@ public class PlaceObject : MonoBehaviour
 
     void PrevPrefab()
     {
+        if (spawnedObj != null)
+        {
+            Destroy(spawnedObj);
+            spawnedObj = null;
+        }
+
         if (selectedIndex == 0)
             selectedIndex = mathObjects.Count - 1;
         else
