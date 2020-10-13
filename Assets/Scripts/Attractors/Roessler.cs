@@ -8,19 +8,19 @@ public class Roessler : MonoBehaviour
     private ScaleFactor scale; // Scale component
 
     // Constants
-    public double a = 0.2;
-    public double b = 0.2;
-    public double c = 5.7;
+    private double a = 0.2;
+    private double b = 0.2;
+    private double c = 5.7;
 
-    public double x0, y0, z0; // Starting positions
-    public double x, y, z; // Variables to edit over time
+    private double x0, y0, z0; // Starting positions
+    private double x, y, z; // Variables to edit over time
 
-    public double delta; // Used in position plotting
-    public double dx, dy, dz; // Functions
+    private double delta; // Used in position plotting
+    private double dx, dy, dz; // Functions
 
     Vector3[] positionData;
 
-    public int n; // Iterations
+    private int n; // Iterations
 
     public void PlotPoints()
     {
@@ -50,7 +50,7 @@ public class Roessler : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        n = 2000;
+        n = 3000;
         x0 = y0 = z0 = 1.0;
         positionData = new Vector3[n];
         line = GetComponent<LineRenderer>();
@@ -59,6 +59,7 @@ public class Roessler : MonoBehaviour
         line.positionCount = n;
         line.material = new Material(Shader.Find("Sprites/Default"));
         scale = gameObject.GetComponent<ScaleFactor>();
+        delta = 0.07;
         PlotPoints();
     }
 
