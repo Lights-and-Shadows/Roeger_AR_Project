@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 using UnityEngine.XR.ARFoundation;
 using UnityEngine.XR.ARSubsystems;
 
@@ -48,6 +49,8 @@ public class PlaceObject : MonoBehaviour
             selectedIndex = 0;
         else
             selectedIndex++;
+
+        obj = mathObjects[selectedIndex];
     }
 
     void PrevPrefab()
@@ -62,6 +65,18 @@ public class PlaceObject : MonoBehaviour
             selectedIndex = mathObjects.Count - 1;
         else
             selectedIndex--;
+
+        obj = mathObjects[selectedIndex];
+    }
+
+    private bool IsPointerOverUI()
+    {
+        PointerEventData eventDataCurrentPosition = new PointerEventData(EventSystem.current);
+        eventDataCurrentPosition.position = new Vector2(Input.GetTouch(0).position.x, Input.GetTouch(0).position.y);
+
+        List<RaycastResult> results = new List<RaycastResult>();
+        EventSystem.current.RaycastAll(eventDataCurrentPosition, results);
+        return results.Count > 0;
     }
 
     bool GetTouchPos(out Vector2 touchPos)
@@ -81,17 +96,20 @@ public class PlaceObject : MonoBehaviour
         if (!GetTouchPos(out Vector2 touchPos))
             return;
 
-        if (_arRaycastManager.Raycast(touchPos, hits, TrackableType.PlaneWithinPolygon))
+        if (!IsPointerOverUI())
         {
-            var hitPose = hits[0].pose;
+            if (_arRaycastManager.Raycast(touchPos, hits, TrackableType.PlaneWithinPolygon))
+            {
+                var hitPose = hits[0].pose;
 
-            if (spawnedObj == null)
-            {
-                spawnedObj = Instantiate(obj, hitPose.position, hitPose.rotation);
-            }
-            else
-            {
-                spawnedObj.transform.position = hitPose.position;
+                if (spawnedObj == null)
+                {
+                    spawnedObj = Instantiate(obj, hitPose.position, hitPose.rotation);
+                }
+                else
+                {
+                    spawnedObj.transform.position = hitPose.position;
+                }
             }
         }
 

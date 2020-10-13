@@ -9,11 +9,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8286366960850320338}
-  - component: {fileID: 8286366960850320337}
   - component: {fileID: 8286366960850320336}
   - component: {fileID: 7010918323521895355}
+  - component: {fileID: 2743053461041342837}
   m_Layer: 0
-  m_Name: lorenz
+  m_Name: chua
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -33,32 +33,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8286366960850320337
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8286366960850320343}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8176ba688025d9641affee28f9bdd015, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sigma: 10
-  rho: 28
-  beta: 2.6666666666666665
-  x0: 1
-  y0: 1
-  z0: 1
-  x: 0
-  y: 0
-  z: 0
-  delta: 0.01
-  dx: 0
-  dy: 0
-  dz: 0
-  n: 0
 --- !u!120 &8286366960850320336
 LineRenderer:
   m_ObjectHideFlags: 0
@@ -167,3 +141,32 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scaleFactor: 0.05
+--- !u!114 &2743053461041342837
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8286366960850320343}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 515fe5c09cd37cf4c9e34ec33375018d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  a: 15.6
+  b: 1
+  c: 25.58
+  d: -1
+  e: 0
+  x0: 0
+  y0: 0
+  z0: 0
+  x: 0
+  y: 0
+  z: 0
+  delta: 0.01
+  dx: 0
+  dy: 0
+  dz: 0
+  g: 0
+  n: 0
