@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using UnityEngine.XR.ARFoundation;
 using UnityEngine.XR.ARSubsystems;
+using TMPro;
 
 [RequireComponent(typeof(ARRaycastManager))]
 public class PlaceObject : MonoBehaviour
@@ -13,6 +14,8 @@ public class PlaceObject : MonoBehaviour
     private Vector2 touchPosition;
 
     public Slider scaleSlider, rotationSlider;
+
+    public TextMeshProUGUI currentObjText;
 
     static List<ARRaycastHit> hits = new List<ARRaycastHit>();
 
@@ -95,6 +98,8 @@ public class PlaceObject : MonoBehaviour
     {
         if (!GetTouchPos(out Vector2 touchPos))
             return;
+
+        currentObjText.text = "Current Object: " + mathObjects[selectedIndex].name;
 
         if (!IsPointerOverUI())
         {
