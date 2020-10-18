@@ -19,7 +19,7 @@ public class PlaceObject : MonoBehaviour
 
     static List<ARRaycastHit> hits = new List<ARRaycastHit>();
 
-    public Button nextButton, prevButton;
+    public Button nextButton, prevButton, planeButton;
 
     public GameObject obj;
 
@@ -35,6 +35,7 @@ public class PlaceObject : MonoBehaviour
 
         nextButton.onClick.AddListener(() => NextPrefab());
         prevButton.onClick.AddListener(() => PrevPrefab());
+        planeButton.onClick.AddListener(() => TogglePlaneDetection());
 
         obj = mathObjects[selectedIndex];
     }
@@ -70,6 +71,27 @@ public class PlaceObject : MonoBehaviour
             selectedIndex--;
 
         obj = mathObjects[selectedIndex];
+    }
+
+    void TogglePlaneDetection()
+    {
+        ARPlaneManager manager = GetComponentInParent<ARPlaneManager>();
+
+        if (manager.enabled)
+        {
+            manager.enabled = false;
+            planeButton.GetComponentInChildren<TextMeshProUGUI>().text = "Plane" + System.Environment.NewLine + "Off";
+        }
+        else
+        {
+            manager.enabled = true;
+            planeButton.GetComponentInChildren<TextMeshProUGUI>().text = "Plane" + System.Environment.NewLine + "On";
+        }
+    }
+
+    public void ExitApplication()
+    {
+        Application.Quit();
     }
 
     private bool IsPointerOverUI()
